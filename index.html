@@ -1,21 +1,846 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Akshut Goyal</title>
-    <meta name="google-site-verification" content="_lb2PGJDAW09yQPICC7rPodf716DsGDBDrQe76OhR5w" />
-    <style>
-      body { font-family: system-ui, -apple-system, sans-serif; max-width: 640px; margin: 10vh auto; padding: 0 1.5rem; color: #1a1a1a; }
-      a { color: #0969da; }
-    </style>
-  </head>
-  <body>
+<html lang="en" class="is-loading">
+<head>
+<meta name="google-site-verification" content="_lb2PGJDAW09yQPICC7rPodf716DsGDBDrQe76OhR5w" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Akshut Goyal — Full-stack Developer</title>
+<meta name="description" content="Akshut Goyal — full-stack developer and B.Tech student at DTU. Web apps, APIs, AWS, on-device ML and Solidity. Open to internships and freelance projects." />
+<meta name="theme-color" content="#000000" />
+<meta name="color-scheme" content="dark" />
+<link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+<link rel="canonical" href="https://akshutgoyal.github.io/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Akshut Goyal — Full-stack Developer" />
+<meta property="og:description" content="Web applications from interface to deployment, with projects in on-device ML and Solidity. Open to internships and freelance work." />
+<meta property="og:url" content="https://akshutgoyal.github.io/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preload" href="./fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="./fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- ============================================================
+     Critical, render-blocking CSS: only what the preloader needs,
+     so the first painted frame is the loading screen — never a
+     flash of unstyled content.
+     ============================================================ -->
+<script>
+  // Preview palettes are URL-scoped; the default stays lime until one is chosen.
+  var previewTheme = new URLSearchParams(location.search).get('theme');
+  if (['cyan', 'violet', 'rose'].includes(previewTheme)) document.documentElement.dataset.theme = previewTheme;
+</script>
+<style>
+  :root {
+    --bg: #000000;
+    --ink: #eef1f7;
+    --muted: #79839a;
+    --accent: #d8ff3e;
+    --accent-rgb: 216, 255, 62;
+    --accent-2: #5b7cff;
+    --core-deep: #0d1633;
+    --core-rim: #9fc4ff;
+    --core-shell: #3f6bff;
+    --line: rgba(255, 255, 255, .1);
+  }
+  :root[data-theme="cyan"] {
+    --accent: #51f4ee; --accent-rgb: 81, 244, 238; --accent-2: #488bff;
+    --core-deep: #06252e; --core-rim: #a5f9ff; --core-shell: #27a7d8;
+  }
+  :root[data-theme="violet"] {
+    --accent: #c49bff; --accent-rgb: 196, 155, 255; --accent-2: #8571ff;
+    --core-deep: #1e1039; --core-rim: #e0c4ff; --core-shell: #9461ed;
+  }
+  :root[data-theme="rose"] {
+    --accent: #ff83b5; --accent-rgb: 255, 131, 181; --accent-2: #bb6bff;
+    --core-deep: #300f29; --core-rim: #ffc3dc; --core-shell: #dc4e9c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); }
+  html.is-loading, html.is-loading body { height: 100%; overflow: hidden; }
+
+  #preloader {
+    position: fixed; inset: 0; z-index: 9000;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    display: flex; flex-direction: column;
+    padding: clamp(16px, 3vw, 34px);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  #preloader .pre__bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: #000;
+  }
+  #preloader .pre__grid {
+    position: absolute; inset: 0; z-index: 0; opacity: .55;
+    background: url('/stars.svg') center / cover;
+    -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 20%, transparent 78%);
+            mask-image: radial-gradient(120% 100% at 50% 50%, #000 20%, transparent 78%);
+  }
+  #preloader .pre__inner {
+    position: relative; z-index: 3;
+    display: flex; flex-direction: column; justify-content: space-between;
+    height: 100%; width: 100%;
+  }
+  #preloader .pre__footer { position: relative; }
+  #preloader .pre__row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+    font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted);
+    border-top: 1px solid var(--line); padding-top: 12px;
+  }
+  #preloader .pre__center {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 4vw;
+    flex-wrap: wrap;
+  }
+  #preloader .pre__word {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 500;
+    font-size: clamp(3.2rem, 13.5vw, 15rem);
+    line-height: .82; letter-spacing: -.045em; margin: 0;
+    display: flex;
+    /* Hidden until prime() has the letters stacked offscreen, so the first
+       paint never shows the word at rest and then jump. */
+    opacity: 0;
+  }
+  #preloader .pre__word span { display: block; will-change: transform; }
+  #preloader .pre__count {
+    font-size: clamp(1.4rem, 4vw, 3.2rem);
+    color: var(--accent); letter-spacing: -.02em; line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  #preloader .pre__count small { font-size: .42em; color: var(--muted); margin-left: .4em; letter-spacing: .1em; }
+  #preloader .pre__rail {
+    position: relative; height: 2px; background: rgba(255,255,255,.11);
+    margin-top: 14px; overflow: hidden;
+  }
+  #preloader .pre__fill {
+    position: absolute; inset: 0; transform: scaleX(0); transform-origin: left; will-change: transform;
+    background: linear-gradient(90deg, var(--accent), #fff);
+  }
+  #preloader .pre__dash {
+    position: absolute; top: -3px; height: 8px; width: 90px; left: -20%;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .95), transparent);
+    filter: blur(.4px);
+  }
+  #preloader .pre__streak {
+    position: absolute; left: -30%; height: 1px; width: 26%;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .85), transparent);
+    opacity: 0; z-index: 2;
+  }
+  /* The blinds sit *under* the content but over the gradients: they are
+     what actually lifts to uncover the site. */
+  #preloader .pre__blinds { position: absolute; inset: 0; z-index: 1; display: flex; pointer-events: none; }
+  #preloader .pre__blinds .pre__blind {
+    position: relative; flex: 1 1 0; background: var(--bg);
+    transform-origin: 50% 100%;
+    box-shadow: inset -1px 0 0 rgba(255,255,255,.05);
+  }
+  /* No-JS / reduced-motion escape hatch */
+  html.no-webgl #preloader, html.preloader-done #preloader { display: none; }
+  @media (prefers-reduced-motion: reduce) {
+    #preloader .pre__streak, #preloader .pre__dash { display: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════ PRELOADER ══════════════════════════ -->
+<div id="preloader" role="status" aria-live="polite" aria-label="Loading portfolio">
+  <div class="pre__bg"></div>
+  <div class="pre__grid" aria-hidden="true"></div>
+  <div class="pre__streak" data-streak aria-hidden="true"></div>
+  <div class="pre__streak" data-streak aria-hidden="true"></div>
+  <div class="pre__streak" data-streak aria-hidden="true"></div>
+  <div class="pre__blinds" aria-hidden="true">
+    <div class="pre__blind"></div><div class="pre__blind"></div><div class="pre__blind"></div>
+    <div class="pre__blind"></div><div class="pre__blind"></div><div class="pre__blind"></div>
+  </div>
+
+  <div class="pre__inner">
+    <div class="pre__row">
+      <span>Akshut Goyal</span>
+      <span>Portfolio</span>
+    </div>
+
+    <div class="pre__center">
+      <div class="pre__word" data-split-word aria-hidden="true">PORTFOLIO</div>
+      <div class="pre__count">
+        <span id="pre-count">000</span><small>%</small>
+      </div>
+    </div>
+
+    <div class="pre__footer">
+      <div class="pre__rail">
+        <div class="pre__fill" id="pre-fill"></div>
+        <div class="pre__dash" id="pre-dash"></div>
+      </div>
+      <div class="pre__row" style="border-top:none;padding-top:10px">
+        <span id="pre-status">initialising</span>
+        <span id="pre-meta">Delhi, IN — 28.61°N 77.20°E</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Split the loader word as early as parsing allows. The module bundle
+     can take a moment to arrive, and the word must never be caught at
+     rest first — the letters have to already be stacked below the fold
+     before the first paint. Preloader.js picks these spans up as they
+     are. -->
+<script>
+  (function () {
+    var w = document.querySelector('[data-split-word]')
+    if (!w) return
+    var chars = w.textContent.trim().split('')
+    w.textContent = ''
+    for (var i = 0; i < chars.length; i++) {
+      var s = document.createElement('span')
+      s.textContent = chars[i] === ' ' ? '\u00a0' : chars[i]
+      s.style.transform = 'translateY(120%)'
+      s.style.opacity = '0'
+      w.appendChild(s)
+    }
+    w.style.opacity = '1'
+  })()
+</script>
+
+<!-- ══════════════════════════ FIXED LAYERS ══════════════════════════ -->
+<div class="webgl" id="webgl" aria-hidden="true"></div>
+<div class="fx fx--grain" aria-hidden="true"></div>
+<div class="fx fx--vignette" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#hero" data-scroll-to="#hero">
+    <span class="nav__mark" aria-hidden="true"></span>
+    <span class="nav__name">Akshut&nbsp;Goyal</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#about" data-scroll-to="#about"><em>01</em>About</a>
+    <a href="#work" data-scroll-to="#work"><em>02</em>Work</a>
+    <a href="#playground" data-scroll-to="#playground"><em>03</em>Stack</a>
+    <a href="#contact" data-scroll-to="#contact"><em>04</em>Contact</a>
+  </nav>
+  <div class="nav__meta">
+    <span class="nav__dot" aria-hidden="true"></span>
+    <span class="nav__status">Open to work</span>
+  </div>
+</header>
+
+<aside class="rail" id="rail" aria-hidden="true">
+  <div class="rail__line"><div class="rail__progress" id="rail-progress"></div></div>
+  <div class="rail__ticks" id="rail-ticks"></div>
+</aside>
+
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor__dot"></div>
+  <div class="cursor__ring"></div>
+  <span class="cursor__label" id="cursor-label"></span>
+</div>
+
+<!-- ══════════════════════════ THE SITE ══════════════════════════ -->
+<main class="site" id="site">
+
+  <!-- ─────────── HERO ─────────── -->
+  <section class="section section--hero" id="hero"
+    data-camera='{"pos":[0,0.45,9.2],"target":[0,0.1,0],"fov":42,"roll":0,"portrait":{"pos":[0,0.35,20],"target":[0,-2,0],"fov":42,"roll":0}}'>
+    <div class="section__inner hero">
+      <p class="mono hero__kicker" data-reveal="fade">
+        <span class="hero__pulse" aria-hidden="true"></span>
+        Full-stack developer · Delhi, India
+      </p>
+
+      <h1 class="hero__title">
+        <span class="hero__line" data-reveal="line">Akshut</span>
+        <span class="hero__line hero__line--accent" data-reveal="line">Goyal.</span>
+      </h1>
+
+      <div class="hero__foot">
+        <p class="hero__lede" data-reveal="fade">
+          I build <strong>web applications from interface to deployment</strong>
+          with JavaScript, PHP and Python. My projects also explore on-device ML,
+          Solidity and Linux desktop software.
+        </p>
+        <ul class="hero__facts mono" data-reveal="fade">
+          <li><span>08</span> selected projects</li>
+          <li><span>Open</span> to internships</li>
+          <li><span>Available</span> for freelance work</li>
+        </ul>
+      </div>
+
+      <div class="hero__actions" data-reveal="fade">
+        <a class="hero__action hero__action--primary" href="#work" data-scroll-to="#work">Explore my work <span aria-hidden="true">↓</span></a>
+        <a class="hero__action" href="#contact" data-scroll-to="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── ABOUT ─────────── -->
+  <section class="section section--about" id="about"
+    data-camera='{"pos":[-2.6,1.5,-6],"target":[-9.5,0.4,-20],"fov":38,"roll":-0.03,"portrait":{"pos":[-11,0.9,0],"target":[-11,-2.3,-24],"fov":38,"roll":0}}'>
+    <div class="section__inner about">
+      <header class="sec-head">
+        <span class="mono sec-head__num">01</span>
+        <h2 class="sec-head__title" data-reveal="line">From interface to infrastructure</h2>
+      </header>
+
+      <div class="about__grid">
+        <div class="about__copy">
+          <p data-reveal="fade">
+            I’m a <strong>full-stack developer and B.Tech student at Delhi Technological University</strong>.
+            I like working across an application: building the interface, writing APIs,
+            connecting the database and getting it deployed.
+          </p>
+          <p data-reveal="fade">
+            <strong>RoadSense</strong> brings together a Flutter app, a React dashboard, AWS and
+            on-device pothole detection. <strong>ApnaRecord</strong> explores patient-owned records,
+            connecting a web interface to Solidity contracts and wallet-based access.
+          </p>
+          <p data-reveal="fade">
+            Beyond web development, I build Linux desktop tools and browser automation in the
+            <strong>Aethel suite</strong>. I’m looking for an internship where I can contribute to
+            a team, and I’m also available for freelance web projects.
+          </p>
+        </div>
+
+        <ul class="about__list">
+          <li data-reveal="fade">
+            <span class="mono about__k">Web applications</span>
+            <p>React, Vue, Laravel and CodeIgniter; APIs with Node.js, Express and FastAPI.</p>
+          </li>
+          <li data-reveal="fade">
+            <span class="mono about__k">Cloud &amp; data</span>
+            <p>MySQL, MongoDB, Redis and DynamoDB; AWS infrastructure defined with CDK.</p>
+          </li>
+          <li data-reveal="fade">
+            <span class="mono about__k">ML in RoadSense</span>
+            <p>YOLOv8, PyTorch and ONNX, with TensorFlow Lite inference on the phone.</p>
+          </li>
+          <li data-reveal="fade">
+            <span class="mono about__k">Blockchain in ApnaRecord</span>
+            <p>Solidity, OpenZeppelin and ethers.js on Base Sepolia, with MetaMask wallet access.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── WORK ─────────── -->
+  <section class="section section--work" id="work">
+    <div class="section__inner work-head"
+      data-camera='{"pos":[0,2.6,-12],"target":[0,0.4,-40],"fov":40,"roll":0.02,"portrait":{"pos":[0,2.4,-16],"target":[0,1.2,-60],"fov":46,"roll":0}}'>
+      <header class="sec-head">
+        <span class="mono sec-head__num">02</span>
+        <h2 class="sec-head__title" data-reveal="line">Selected work</h2>
+      </header>
+      <p class="sec-note mono" data-reveal="fade">Eight builds, led by RoadSense and ApnaRecord. Pick a project or scroll to explore.</p>
+    </div>
+
+    <div class="work-gallery">
+      <nav class="project-nav" aria-label="Browse projects" hidden>
+        <span class="project-nav__count mono">01 / 08</span>
+        <div class="project-picker">
+          <button class="project-picker__trigger" id="project-picker" type="button" role="combobox" aria-label="Choose a project" aria-haspopup="listbox" aria-expanded="false" aria-controls="project-options">
+            <span class="project-picker__value">RoadSense</span>
+            <svg class="project-picker__chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
+          </button>
+          <ul class="project-picker__menu" id="project-options" role="listbox" aria-label="Projects" data-lenis-prevent hidden></ul>
+        </div>
+        <button type="button" data-project-previous aria-label="Previous project">←</button>
+        <button type="button" data-project-next aria-label="Next project">→</button>
+      </nav>
+    <div class="work-list" id="work-list">
+
+      <article class="work" id="project-roadsense" aria-labelledby="project-roadsense-title" data-project="0" data-reveal="fade"
+        data-camera='{"pos":[-1.8,0.4,-32.5],"target":[1.05,0.1,-46],"fov":36,"roll":-0.02,"portrait":{"pos":[4.9,0.6,-20.5],"target":[4.9,-4.3,-46],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">01<span class="work__feature">Featured project</span></span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-roadsense-title">RoadSense</h3>
+        <p class="work__blurb">
+          One report follows a street defect from capture to closure. The API merges repeat sightings into a site history; engineers work from a ranked dashboard and upload evidence when a repair or clearance is complete.
+        </p>
+        <ul class="chips">
+          <li>Flutter</li><li>YOLOv8</li><li>TensorFlow Lite</li><li>React</li><li>MapLibre</li><li>AWS</li>
+        </ul>
+        <p class="work__made mono">Mobile + web + AWS · WeMakeDevs Environmental Hacks</p>
+        <a class="work__link" href="https://github.com/akshutgoyal/ROADSENSE" target="_blank" rel="noopener">
+          <span>Repository</span><span class="work__arrow" aria-hidden="true">↗</span>
+        </a>
+        </div>
+      </article>
+
+      <article class="work" id="project-apnarecord" aria-labelledby="project-apnarecord-title" data-project="1" data-reveal="fade"
+        data-camera='{"pos":[1.8,0.4,-48.5],"target":[-1.05,0.1,-62],"fov":36,"roll":0.02,"portrait":{"pos":[-4.9,0.6,-36.5],"target":[-4.9,-4.3,-62],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">02<span class="work__feature">Featured project</span></span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-apnarecord-title">ApnaRecord</h3>
+        <p class="work__blurb">
+          The web app connects a patient’s wallet to OpenZeppelin-based Solidity contracts on Base Sepolia. Contract permissions are checked on each call, with MetaMask access and Cloudflare R2 file storage.
+        </p>
+        <ul class="chips">
+          <li>Solidity</li><li>OpenZeppelin</li><li>ethers.js</li><li>MetaMask</li><li>Base Sepolia</li><li>React</li><li>Express</li><li>R2</li>
+        </ul>
+        <p class="work__made mono">Wallet login · Solidity contracts · Cloudflare R2 storage</p>
+        <div class="work__links">
+          <a class="work__link" href="https://github.com/akshutgoyal/ApnaRecord" target="_blank" rel="noopener">
+            <span>Repository</span><span class="work__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="work__link" href="https://apna-record.vercel.app" target="_blank" rel="noopener">
+            <span>Live build</span><span class="work__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        </div>
+      </article>
+
+      <article class="work" id="project-aethel-launcher" aria-labelledby="project-aethel-launcher-title" data-project="2" data-reveal="fade"
+        data-camera='{"pos":[-1.8,0.4,-64.5],"target":[1.05,0.1,-78],"fov":36,"roll":-0.02,"portrait":{"pos":[4.9,0.6,-52.5],"target":[4.9,-4.3,-78],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">03</span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-aethel-launcher-title">Aethel Launcher</h3>
+        <p class="work__blurb">
+          A single supervision lock controls session start and stop. GTK4/libadwaita, a FastAPI dashboard, a CLI and PySide6 share that engine, so adding another interface does not create another source of state.
+        </p>
+        <ul class="chips">
+          <li>Python</li><li>GTK4</li><li>FastAPI</li><li>PySide6</li><li>Playwright</li>
+        </ul>
+        <p class="work__made mono">No licence key · no telemetry · no phone-home</p>
+        <p class="work__link work__link--muted"><span>Private while it's in the shop</span></p>
+        </div>
+      </article>
+
+      <article class="work" id="project-aethel-todo" aria-labelledby="project-aethel-todo-title" data-project="3" data-reveal="fade"
+        data-camera='{"pos":[1.8,0.4,-80.5],"target":[-1.05,0.1,-94],"fov":36,"roll":0.02,"portrait":{"pos":[-4.9,0.6,-68.5],"target":[-4.9,-4.3,-94],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">04</span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-aethel-todo-title">Aethel Todo</h3>
+        <p class="work__blurb">
+          A Bun daemon owns the task state and recurrence engine. The CLI, terminal interface and React PWA share that state, with per-task streaks, points ledgers and rewards you redeem against yourself.
+        </p>
+        <ul class="chips">
+          <li>Bun</li><li>React PWA</li><li>Local-first</li>
+        </ul>
+        <p class="work__made mono">Points, streaks, self-redeemed rewards</p>
+        <p class="work__link work__link--muted"><span>Private while it's in the shop</span></p>
+        </div>
+      </article>
+
+      <article class="work" id="project-aethel-harness" aria-labelledby="project-aethel-harness-title" data-project="4" data-reveal="fade"
+        data-camera='{"pos":[-1.8,0.4,-96.5],"target":[1.05,0.1,-110],"fov":36,"roll":-0.02,"portrait":{"pos":[4.9,0.6,-84.5],"target":[4.9,-4.3,-110],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">05</span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-aethel-harness-title">Aethel Harness</h3>
+        <p class="work__blurb">
+          An append-only session log is the source of truth; model history is derived from it. Permissions fail closed, and plugin registrations return disposers that unwind in reverse. The VMC injector and Chrome extension are public.
+        </p>
+        <ul class="chips">
+          <li>TypeScript</li><li>Node</li><li>Append-only log</li><li>Plugins</li>
+        </ul>
+        <p class="work__made mono">Plus the public VMC injector + Chrome MV3 extension</p>
+        <a class="work__link" href="https://github.com/akshutgoyal/aethel-vmc-injector" target="_blank" rel="noopener">
+          <span>See the public piece</span><span class="work__arrow" aria-hidden="true">↗</span>
+        </a>
+        </div>
+      </article>
+
+      <article class="work" id="project-keylogger" aria-labelledby="project-keylogger-title" data-project="5" data-reveal="fade"
+        data-camera='{"pos":[1.8,0.4,-112.5],"target":[-1.05,0.1,-126],"fov":36,"roll":0.02,"portrait":{"pos":[-4.9,0.6,-100.5],"target":[-4.9,-4.3,-126],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">06</span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-keylogger-title">Keylogger</h3>
+        <p class="work__blurb">
+          A step-by-step C exercise for DTU’s EHAX cybersecurity club, focused on reading Linux key events and working close to the operating system.
+        </p>
+        <ul class="chips">
+          <li>C</li>
+        </ul>
+        <p class="work__made mono">Step-by-step exercise · DTU EHAX</p>
+        <a class="work__link" href="https://github.com/akshutgoyal/Keylogger" target="_blank" rel="noopener">
+          <span>Repository</span><span class="work__arrow" aria-hidden="true">↗</span>
+        </a>
+        </div>
+      </article>
+
+      <article class="work" id="project-earnpt-automation" aria-labelledby="project-earnpt-automation-title" data-project="6" data-reveal="fade"
+        data-camera='{"pos":[-1.8,0.4,-128.5],"target":[1.05,0.1,-142],"fov":36,"roll":-0.02,"portrait":{"pos":[4.9,0.6,-116.5],"target":[4.9,-4.3,-142],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">07</span>
+          <span class="mono work__year">2026</span>
+        </div>
+        <h3 class="work__title" id="project-earnpt-automation-title">Earnpt Automation</h3>
+        <p class="work__blurb">
+          Connects Playwright to an existing signed-in Chrome profile over the DevTools Protocol. It opens AI tabs, sends prompts and steps through account flows while retaining the real browser session.
+        </p>
+        <ul class="chips">
+          <li>JavaScript</li><li>Playwright</li><li>CDP</li>
+        </ul>
+        <p class="work__made mono">Runs against a signed-in profile</p>
+        <a class="work__link" href="https://github.com/akshutgoyal/Earnpt-Automation" target="_blank" rel="noopener">
+          <span>Repository</span><span class="work__arrow" aria-hidden="true">↗</span>
+        </a>
+        </div>
+      </article>
+
+      <article class="work" id="project-ddos-tester" aria-labelledby="project-ddos-tester-title" data-project="7" data-reveal="fade"
+        data-camera='{"pos":[1.8,0.4,-144.5],"target":[-1.05,0.1,-158],"fov":36,"roll":0.02,"portrait":{"pos":[-4.9,0.6,-132.5],"target":[-4.9,-4.3,-158],"fov":36,"roll":0}}'>
+        <figure class="work__preview" aria-hidden="true"></figure>
+        <div class="work__copy">
+        <div class="work__bar">
+          <span class="mono work__index">08</span>
+          <span class="mono work__year">2025</span>
+        </div>
+        <h3 class="work__title" id="project-ddos-tester-title">DDOS Tester</h3>
+        <p class="work__blurb">
+          Concurrency increases gradually to expose rate limits and breaking points. The Python implementation uses aiohttp and includes an explicit authorised-use disclaimer.
+        </p>
+        <ul class="chips">
+          <li>Python</li><li>aiohttp</li>
+        </ul>
+        <p class="work__made mono">Async ramp · authorised use only</p>
+        <a class="work__link" href="https://github.com/akshutgoyal/DDOS-Tester" target="_blank" rel="noopener">
+          <span>Repository</span><span class="work__arrow" aria-hidden="true">↗</span>
+        </a>
+        </div>
+      </article>
+
+    </div>
+
+    </div>
+
+    <!-- ── ARCHIVE ── earlier websites and focused experiments.
+         No 3D panel: these predate the corridor, and the camera is
+         already flying out of it towards the stack ring. The camera
+         station lives on the header, so the anchor frames the heading
+         and the first rows together. ── -->
+    <div class="archive">
+      <div class="section__inner">
+        <header class="archive__head" id="archive" data-reveal="fade"
+          data-camera='{"pos":[0,4.4,-200],"target":[0,0.6,-226],"fov":44,"roll":0.01,"portrait":{"pos":[0,4.2,-192],"target":[0,-2.2,-224],"fov":48,"roll":0}}'>
+          <span class="mono archive__k">Archive</span>
+          <h3 class="archive__title">Before the corridor</h3>
+          <p class="sec-note mono archive__note">Earlier websites and focused experiments, from 2022 onward.</p>
+        </header>
+
+        <ul class="archive__list">
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2026</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/zulip-processor-practice" target="_blank" rel="noopener">Zulip Processor <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">A hands-on Zulip API exercise against a real server, focused on reading and extending an unfamiliar codebase.</p>
+              <span class="mono archive__stack">Python · Zulip API</span>
+            </div>
+            <span class="mono archive__links archive__none">practice repo</span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2023</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/Green-Pulse-Connect" target="_blank" rel="noopener">Green-Pulse-Connect <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">
+                A sustainability community platform — green living tips, renewable energy,
+                zero-waste living, eco-product reviews and climate advocacy in one place.
+              </p>
+              <span class="mono archive__stack">Laravel 10 · PHP 8.1 · Livewire · MySQL</span>
+            </div>
+            <span class="mono archive__links archive__none">repo only</span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2023</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/SrinivasaRamanujan" target="_blank" rel="noopener">SrinivasaRamanujan <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">A Design Championship tribute to Ramanujan, built to be read on a projector.</p>
+              <span class="mono archive__stack">HTML · CSS · JavaScript</span>
+            </div>
+            <span class="mono archive__links">
+              <a href="https://akshutgoyal.github.io/SrinivasaRamanujan/" target="_blank" rel="noopener">Live ↗</a>
+            </span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2022</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/Virtual-Museum" target="_blank" rel="noopener">Virtual-Museum <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">
+                A PHP virtual tour of the National Museum, New Delhi, with a self-hosted carousel
+                and a downloadable brochure.
+              </p>
+              <span class="mono archive__stack">PHP · jQuery · Owl Carousel</span>
+            </div>
+            <span class="mono archive__links archive__none">repo only</span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2022</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/Independia" target="_blank" rel="noopener">Independia <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">A journey-towards-independence piece for the same championship.</p>
+              <span class="mono archive__stack">HTML · CSS · JavaScript</span>
+            </div>
+            <span class="mono archive__links">
+              <a href="https://akshutgoyal.github.io/Independia/" target="_blank" rel="noopener">Live ↗</a>
+            </span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2022</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/Bloggers-Hub" target="_blank" rel="noopener">Bloggers-Hub <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">
+                A multi-page blog — about, contact, privacy, terms and a working registration
+                flow — written before I reached for a framework.
+              </p>
+              <span class="mono archive__stack">HTML · CSS · Bootstrap · jQuery</span>
+            </div>
+            <span class="mono archive__links">
+              <a href="https://akshutgoyal.github.io/Bloggers-Hub/" target="_blank" rel="noopener">Live ↗</a>
+            </span>
+          </li>
+
+          <li class="archive__row" data-reveal="fade">
+            <span class="mono archive__year">2022</span>
+            <div class="archive__body">
+              <a class="archive__name" href="https://github.com/akshutgoyal/GrowtheX" target="_blank" rel="noopener">GrowtheX <span aria-hidden="true">↗</span></a>
+              <p class="archive__desc">A landing site for a stock-trading concept, with an animated profit calculator.</p>
+              <span class="mono archive__stack">HTML · CSS · jQuery · Lottie</span>
+            </div>
+            <span class="mono archive__links">
+              <a href="https://akshutgoyal.github.io/GrowtheX/" target="_blank" rel="noopener">Live ↗</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── PLAYGROUND / STACK ─────────── -->
+  <section class="section section--stack" id="playground"
+    data-camera='{"pos":[0,13,-202],"target":[0,4,-228],"fov":46,"roll":0,"portrait":{"pos":[0,12,-202],"target":[0,8,-228],"fov":46,"roll":0}}'>
+    <div class="section__inner stack">
+      <header class="sec-head">
+        <span class="mono sec-head__num">03</span>
+        <h2 class="sec-head__title" data-reveal="line">The toolkit</h2>
+      </header>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track" id="marquee-track"></div>
+      </div>
+
+      <ul class="stack__cols">
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Languages</span>
+              <span class="stack__preview">C · C++ · JavaScript · PHP · Python</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">C · C++ · JavaScript · PHP · Python · TypeScript · Dart · Bash</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Frontend</span>
+              <span class="stack__preview">React · Vue · Vite · Tailwind CSS</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">React · Vue · Vite · Tailwind CSS</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Backend</span>
+              <span class="stack__preview">Node.js · PHP · Python APIs</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">Node.js · Express · FastAPI · Bun · Laravel · CodeIgniter</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Databases &amp; caching</span>
+              <span class="stack__preview">Relational, document &amp; key-value data</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">MySQL · MongoDB · Redis · DynamoDB</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Mobile &amp; desktop</span>
+              <span class="stack__preview">Flutter &amp; Linux desktop apps</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">Flutter · GTK4/libadwaita · Qt/PySide6</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Blockchain / ApnaRecord</span>
+              <span class="stack__preview">Solidity contracts &amp; wallet integration</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">Solidity · OpenZeppelin · ethers.js · MetaMask · Base Sepolia · Remix IDE</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">ML / RoadSense</span>
+              <span class="stack__preview">On-device detection &amp; model export</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">PyTorch · YOLOv8 · ONNX · TensorFlow Lite · NumPy</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">AWS / RoadSense</span>
+              <span class="stack__preview">Serverless APIs &amp; infrastructure</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">Lambda · S3 · API Gateway · Cognito · CDK · SageMaker · CloudWatch · IAM · Amazon Location Service</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Deployment</span>
+              <span class="stack__preview">CI/CD, hosting &amp; object storage</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">GitHub Actions · Vercel · AWS Amplify Hosting · Cloudflare R2</p>
+          </details>
+        </li>
+        <li data-reveal="fade">
+          <details class="stack__group">
+            <summary>
+              <span class="mono stack__k">Tools &amp; testing</span>
+              <span class="stack__preview">Version control, automation &amp; tests</span>
+              <span class="stack__toggle" aria-hidden="true">+</span>
+            </summary>
+            <p class="stack__details">Git · Linux · systemd · Postman · Playwright · pytest</p>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ─────────── CONTACT ─────────── -->
+  <section class="section section--contact" id="contact"
+    data-camera='{"pos":[0,5.2,-248],"target":[0,4.4,-314],"fov":62,"roll":-0.015,"portrait":{"pos":[0,6.4,-250],"target":[0,3.2,-314],"fov":58,"roll":0}}'>
+    <div class="section__inner contact">
+      <header class="sec-head">
+        <span class="mono sec-head__num">04</span>
+        <h2 class="contact__title" data-reveal="line">Tell me what you're building</h2>
+      </header>
+
+      <p class="contact__lede" data-reveal="fade">
+        I’m open to <strong>full-stack development internships</strong> and
+        <strong>freelance web projects</strong>. If you’re building an application or have
+        a role in mind, I’d like to hear about it.
+      </p>
+
+      <a class="contact__mail" href="mailto:akshutgoyal@gmail.com" data-cursor="Write">
+        <span class="contact__mailtext">akshutgoyal@gmail.com</span>
+        <span class="contact__mailglow" aria-hidden="true"></span>
+      </a>
+
+      <ul class="contact__links" data-reveal="fade">
+        <li><a href="https://github.com/akshutgoyal" target="_blank" rel="noopener" data-cursor="Open">GitHub ↗</a></li>
+        <li><a href="https://www.linkedin.com/in/akshut/" target="_blank" rel="noopener" data-cursor="Open">LinkedIn ↗</a></li>
+        <li><a href="mailto:akshutgoyal@gmail.com?subject=Internship%20opportunity" data-cursor="Write">Internship enquiry ↗</a></li>
+        <li><a href="mailto:akshutgoyal@gmail.com?subject=Freelance%20project" data-cursor="Write">Freelance project ↗</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <span class="mono">© <span id="year">2026</span> Akshut Goyal</span>
+      <span class="mono">Built with Three.js · GSAP · Lenis</span>
+      <a class="mono footer__top" href="#hero" data-scroll-to="#hero">Back to top ↑</a>
+    </div>
+  </footer>
+</main>
+
+<a class="scroll-top" href="#hero" data-scroll-to="#hero" aria-label="Scroll to top">
+  <span class="scroll-top__tooltip" aria-hidden="true">Back to top</span>
+  <svg class="scroll-top__ring" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+    <circle class="scroll-top__track" cx="28" cy="28" r="25" />
+    <circle class="scroll-top__progress" cx="28" cy="28" r="25" pathLength="100" />
+  </svg>
+  <span class="scroll-top__content" aria-hidden="true">
+    <svg class="scroll-top__arrow" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20V5m-6 6 6-6 6 6" />
+    </svg>
+    <span class="scroll-top__pct">00</span>
+  </span>
+</a>
+
+<noscript>
+  <style>
+    /* Without JS the curtain can never lift and the scroll lock never
+       releases, so neither may survive. The nav stays: its anchors work
+       natively. */
+    #preloader, .webgl, .fx, .rail, .cursor { display: none !important; }
+    html.is-loading, html.is-loading body { height: auto !important; overflow: auto !important; }
+  </style>
+  <div class="noscript">
     <h1>Akshut Goyal</h1>
-    <p>Projects:</p>
+    <p>This site uses WebGL for its 3D world — but everything you need is below, no JavaScript required.</p>
     <ul>
-      <li><a href="https://akshutgoyal.github.io/aarogyachain-website/">AarogyaChain — Patient-Owned Medical Records</a></li>
+      <li><a href="mailto:akshutgoyal@gmail.com">akshutgoyal@gmail.com</a></li>
+      <li><a href="https://github.com/akshutgoyal">github.com/akshutgoyal</a></li>
+      <li><a href="https://www.linkedin.com/in/akshut/">linkedin.com/in/akshut</a></li>
     </ul>
-    <p><a href="https://github.com/akshutgoyal">GitHub profile</a></p>
-  </body>
+  </div>
+</noscript>
+
+<script type="module" src="/src/main.js"></script>
+
+<!-- Watchdog: if the module never boots (blocked bundle, JS error, an
+     ancient browser that can't parse the syntax), lift the curtain so
+     the content is never held hostage by the loading screen. -->
+<script>
+  setTimeout(function () {
+    if (!window.__portfolioBooted) {
+      document.documentElement.classList.remove('is-loading')
+      document.documentElement.classList.add('preloader-done', 'is-ready', 'no-webgl')
+    }
+  }, 8000)
+</script>
+</body>
 </html>
